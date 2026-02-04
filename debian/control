@@ -22,6 +22,7 @@ Build-Depends: debhelper (>=12~),
                lib32stdc++6 [!i386],
                lib32z1 [!i386],
                dos2unix,
+               device-tree-compiler,
 
 Package: u-boot-rk2601
 Architecture: all
@@ -34,11 +35,11 @@ Replaces: u-boot-rk2410 (<< 2017.09-63)
 Description: U-Boot based on boot-rk2601
  This package provides the prebuilt U-Boot based on boot-rk2601.
 
-Package: u-boot-product
+Package: u-boot-radxa-rk3528
 Architecture: all
 Depends: u-boot-rk2601,
          ${misc:Depends},
 Section: admin
 Priority: optional
-Description: Radxa U-Boot meta-package for new product
- This package provides the prebuilt U-Boot for new product.
+Description: Radxa U-Boot meta-package for Radxa RK3528 products
+ This package provides the prebuilt U-Boot for Radxa RK3528 products.

@@ -2,3 +2,7 @@
 	path = src
 	url = https://github.com/radxa/u-boot.git
 	branch = next-dev-v2026.01
+[submodule "rkbin"]
+	path = rkbin
+	url = https://github.com/radxa/rkbin.git
+	branch = develop-v2026.01
