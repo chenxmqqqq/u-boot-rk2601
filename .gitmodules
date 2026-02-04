@@ -1,0 +1,4 @@
+[submodule "src"]
+	path = src
+	url = https://github.com/radxa/u-boot.git
+	branch = next-dev-v2026.01

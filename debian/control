@@ -28,6 +28,9 @@ Architecture: all
 Section: admin
 Priority: optional
 Depends: ${misc:Depends},
+Provides: u-boot-rk2410 (= 2017.09-63)
+Conflicts: u-boot-rk2410 (<< 2017.09-63)
+Replaces: u-boot-rk2410 (<< 2017.09-63)
 Description: U-Boot based on boot-rk2601
  This package provides the prebuilt U-Boot based on boot-rk2601.
 

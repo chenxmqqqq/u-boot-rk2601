@@ -1,4 +1,4 @@
-u-boot-rk2601 (0.1.0-1) UNRELEASED; urgency=medium
+u-boot-rk2601 (2017.09-63) UNRELEASED; urgency=medium
 
   * Add initial Debian packaging support
 
