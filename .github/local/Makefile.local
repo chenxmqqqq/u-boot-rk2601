@@ -1,4 +1,4 @@
-UBOOT_PRODUCTS := radxa-rk3528
+UBOOT_PRODUCTS := radxa-rk3528 radxa-rk3576
 
 define find_latest_file
 $(shell find $(1) -name "$(2)*$(3)" 2>/dev/null | sort -Vr | head -1 | xargs realpath)
@@ -18,8 +18,7 @@ radxa-rk3528_defconfig: clean_config
 
 .PHONY: radxa-rk3528_build
 radxa-rk3528_build: radxa-rk3528_defconfig
-	$(UMAKE) all u-boot.itb ROCKCHIP_TPL=$(call find_latest_file,rkbin/bin,rk3528_ddr_1056MHz_v,.bin) \
-	BL31=$(call find_latest_file,rkbin/bin,rk3528_bl31_v,.elf)
+	$(UMAKE) all u-boot.itb
 	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3528MINIALL.ini"
 	cd rkbin && tools/boot_merger "RKBOOT/RK3528MINIALL.ini"
 
@@ -27,7 +26,26 @@ radxa-rk3528_build: radxa-rk3528_defconfig
 radxa-rk3528: radxa-rk3528_build
 	mkdir -p out/$@
 	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
-	mv rkbin/idblock.img "out/$@/idbloader.img"
+	mv rkbin/*idblock*.img "out/$@/idbloader.img"
+	mv src/u-boot.itb "out/$@/"
+	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
+	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
+
+.PHONY: radxa-rk3576_defconfig
+radxa-rk3576_defconfig: clean_config
+	$(UMAKE) rock-4d-rk3576_defconfig
+
+.PHONY: radxa-rk3576_build
+radxa-rk3576_build: radxa-rk3576_defconfig
+	$(UMAKE) all u-boot.itb
+	sed -i "s|FlashBoot=.*|FlashBoot=../src/spl/u-boot-spl.bin|g" "rkbin/RKBOOT/RK3576MINIALL.ini"
+	cd rkbin && tools/boot_merger "RKBOOT/RK3576MINIALL.ini"
+
+.PHONY: radxa-rk3576
+radxa-rk3576: radxa-rk3576_build
+	mkdir -p out/$@
+	mv rkbin/*_loader_*.bin "out/$@/rkboot.bin"
+	mv rkbin/*idblock*.img "out/$@/idbloader.img"
 	mv src/u-boot.itb "out/$@/"
 	cp setup/u-boot_setup-rockchip.sh out/$@/setup.sh
 	cp setup/u-boot_setup-rockchip.ps1 out/$@/setup.ps1
