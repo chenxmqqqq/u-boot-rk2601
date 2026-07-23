@@ -1,3 +1,14 @@
+u-boot-rk2601 (2017.09-72) unstable; urgency=medium
+
+  [ Xinming Chen ]
+  * feat: add rock-pi-s
+  * update: rkbin: update submodule to d6072c0
+  * update: uboot: update submodule to 4218b05
+  * update: uboot: update submodule to e27cb14
+  * feat: add rock-s0
+
+ -- "Radxa Computer Co., Ltd" <dev@radxa.com>  Thu, 23 Jul 2026 08:30:11 +0000
+
 u-boot-rk2601 (2017.09-71) unstable; urgency=medium
 
   [ github-actions[bot] ]
